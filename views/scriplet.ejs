@@ -1,0 +1,26 @@
+<!-- here we are going to use the scriplet tag inside it -->
+<!-- scriplet tag is used for the controll flow tags -->
+<!-- you can use the js with use of the ejs -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Date</title>
+  </head>
+  <body>
+
+
+    <!-- so as we used the js here so we are going to add scriplet tag from ejs here -->
+    <!-- you cant left a comma which is js outside the scriplet -->
+    <%if (wday==="Sunday" || wday==="Saturday"){%>
+      <h1 style="color : red">Today is <%= day %> and it is <%= wday %></h1>
+      <p style="color : red">there is <%= work %> for you to work Today</p>
+    <%}else{%>
+      <h1 style="color : green">Today is <%= day %> and it is <%= wday %></h1>
+      <p style="color : green">there is <%= work %> for you to work Today</p>
+  <% }%>
+
+   <!-- very few time there came the need to use the sciplet tag as the programmer you will always try to store the
+   data inside the js file in order to securely store logic behind your site -->
+  </body>
+</html>

@@ -7,11 +7,15 @@
   <body>
     <h1><%=data%></h1>
     <ul>
-      <li>Wake Up & Get Ready</li>
-      <li>Buy Food</li>
-      <li>Cook Food</li>
-      <li>Eat Food</li>
+  
+
+      <%  var f=element.length;%>
+        <%for(var i=0;i<f;i++){%>
+          <li><%=element[i]%></li>
+      <%  }%>
+
     </ul>
+
     <form class="" action="/" method="post">
       <label for="">Write new work : </label>
       <input type="text" name="box" value="">

@@ -2,9 +2,13 @@ const bp = require('body-parser');
 const express = require('express');
 
 const app = express();
+
 app.use(bp.urlencoded({
   extended: true
 }));
+// creating a empty array
+var item=[" Wake Up"," Get Ready"," Buy Food"," Cook Food"," Eat Food"];
+
 
 // so as we added the bodyparser to file and the server is also created
 // so now add the ejs engine to the our server
@@ -44,16 +48,19 @@ app.get("/", function(req, res) {
 
   // in date 0 stands for sunday and the 6 stand for saturday
 
-  console.log(data1, c);
+  // console.log(data1, c);
 
+// so as push request also goes from the get so we have send Object entry through render
   if (c === 6 || c === 0) {
     res.render("todolist", {
-      data: data1
+      data: data1,
+      element:item,
     });
 
   } else {
     res.render("todolist", {
-      data: data1
+      data: data1,
+      element:item,
     });
   }
   // so render will search for the views folder and search for  file name called the list from it
@@ -71,7 +78,12 @@ app.get("/", function(req, res) {
 
 app.post("/", function(req, res) {
 
+// we cant parse and send value directly through the post
   var box=req.body.box;
   console.log(box);
-  res.render("todolist", {data:data1})
+  // adding value to the items Array
+  item.push(box);// appending new value to the array we will send that array to ejs
+
+// redirecting to get request
+  res.redirect("/");
 });

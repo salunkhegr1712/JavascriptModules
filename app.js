@@ -2,12 +2,13 @@ const bp = require('body-parser');
 const express = require('express');
 
 const app = express();
-
+// adding static repositary to the website
+app.use(express.static("public"));
 app.use(bp.urlencoded({
   extended: true
 }));
 // creating a empty array
-var item=[" Wake Up"," Get Ready"," Buy Food"," Cook Food"," Eat Food"];
+var item=[" Buy Food"," Cook Food"," Eat Food"];
 
 
 // so as we added the bodyparser to file and the server is also created

@@ -1,7 +1,8 @@
 const bp = require('body-parser');
 const express = require('express');
-
+const date=require(__dirname+"/Resources/func.js");
 const app = express();
+
 // adding static repositary to the website
 app.use(express.static("public"));
 app.use(bp.urlencoded({
@@ -10,7 +11,7 @@ app.use(bp.urlencoded({
 // creating a empty array
 var item = [" Buy Food", " Cook Food", " Eat Food"];
 let work = [];
-
+let abt = [];
 // so as we added the bodyparser to file and the server is also created
 // so now add the ejs engine to the our server
 // we have to create a folder to maintain the data within it
@@ -22,26 +23,16 @@ app.listen(3000, function() {
   console.log("server is running at localhost:3000")
 });
 
-function givedate() {
-  var g = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  var m = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  var a = new Date();
-  var b = a.getDate();
-  var bb = a.getMonth();
-  var d = a.getDay();
-  var e = a.getFullYear();
 
-  var data = g[d] + ", " + b + " " + m[bb] + " " + e;
-
-  console.log(data);
-  return data;
-}
-
-var data1 = givedate();
-
+var data1=date.givedate();
+console.log(data1);
+console.log(date.pie);
 // get request for the root
 app.get("/", function(req, res) {
-  res.render("todolist",{data:data1,element:item});
+  res.render("tdlist", {
+    data: data1,
+    element: item
+  });
   // in date 0 stands for sunday and the 6 stand for saturday
 
   // console.log(data1, c);
@@ -62,32 +53,39 @@ app.get("/", function(req, res) {
 });
 // get request for work
 app.get("/work", function(req, res) {
-  res.render("todolist", {
+  res.render("tdlist", {
     data: "My Works",
     element: work,
   });
+});
+
+app.get("/about", function(req, res) {
+  res.render("tdlist", {
+    data: "about",
+    element: abt,
+  });
+
 });
 
 app.post("/", function(req, res) {
 
   // we cant parse and send value directly through the post
 
-  if(req.body.submit="My Works"){
+  if (req.body.submit === "My Works") {
     work.push(req.body.box);
-    console.log(work);
-
     res.redirect("/work");
-  }
-  else {
+  } else if (req.body.submit === "about") {
+    abt.push(req.body.box);
+    res.redirect("/about");
+  } else {
     item.push(req.body.box);
     res.redirect("/");
   }
-//ANGELA LECTURE 271
+  //ANGELA LECTURE 271
   // adding value to the items Array // appending new value to the array we will send that array to ejs
 
 
   // redirecting to get request
-
 });
 
 // here we just assigned the value to the post and separate the work and the todolist in same file

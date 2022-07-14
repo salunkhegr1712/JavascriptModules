@@ -1,5 +1,6 @@
 const bp = require('body-parser');
 const express = require('express');
+// importing function from another js file;
 const date=require(__dirname+"/Resources/func.js");
 const app = express();
 
@@ -26,7 +27,8 @@ app.listen(3000, function() {
 
 var data1=date.givedate();
 console.log(data1);
-console.log(date.pie);
+
+
 // get request for the root
 app.get("/", function(req, res) {
   res.render("tdlist", {

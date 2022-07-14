@@ -1,4 +1,7 @@
+// this is how you can declare the function in one kjs file
+// and extract value in another js file
 exports.givedate = givedate;
+exports.newf=newf;
 
 function givedate() {
 
@@ -14,5 +17,9 @@ function givedate() {
 
   return data;
 }
-
+// thi is hoe yoi can get value for a variable
 exports.pie=3.14;
+
+function newf(){
+  return "hello world"
+}
